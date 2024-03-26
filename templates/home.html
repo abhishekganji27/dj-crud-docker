@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Register Form -->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <h2 class="mb-4">Register</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control" name="name" required id="id_name" placeholder="Username">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="RealPage ID" name="rp_id" required id="id_rp_id">
+                  </div>
+                  <div class="col">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </div>
+              
+        </form>
+      </div>
+    </div>
+  </div>
+
+<hr>
+
+<!-- Details Table -->
+<center><h1> Details </h1></center> &nbsp;&nbsp;
+<table class="table table-hover" id="table">
+    <thead class="table-light"> 
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>RealPage-ID</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td class="table-cell" >{{record.id}}</td>
+            <td class="table-cell" >{{record.name}}</td>
+            <td class="table-cell" >{{record.rp_id}}</td>
+            <td><a href="{% url 'update_record' record.id %}" class="btn btn-outline-secondary btn-sm"> Update </a></td>
+            <td><a href="{% url 'delete_record' record.id %}" class="btn btn-outline-danger btn-sm"> Delete </a></td>
+        </tr>
+        {% endfor %}
+    </tbody>        
+</table>
+
+
+{% endblock %}
+

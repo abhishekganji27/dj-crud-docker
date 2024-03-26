@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center><h1> Update </h1></center> &nbsp;&nbsp;
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="id_name" class="form-label">Name:</label>
+        <input value="{{ record.name }}" class="form-control" type="text" name="name" maxlength="20" required id="id_name">
+    </div>    
+    <div class="mb-3">
+        <label for="id_rp_id" class="form-label">Rp id:</label>
+        <input value="{{ record.rp_id }}" class="form-control" type="number" name="rp_id" required id="id_rp_id">
+    </div>   
+    <button class="btn btn-primary" type="submit"> Update </button>     
+</form>
+{% endblock %}
+
