@@ -20,7 +20,7 @@ class RegisterForm(ModelForm):
 
 def home_page(request):
     form = RegisterForm()
-    records = Details.objects.all()
+    records = Details.objects.all().order_by('id')
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
