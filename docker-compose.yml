@@ -4,6 +4,10 @@ version: '3.4'
 services:
   # name your website service 
   web-app:
+    # name your image 
+    image: django-crud-app
+
+    container_name: dj-web-app-container
     # specify what files and folders to take for building image using `build` key
     build:
       # specify files and folders location using `context`
@@ -18,3 +22,25 @@ services:
     ports:
     # - host:container
       - 8000:8000
+    
+    # volume for persistence
+    volumes:
+      - .:/app
+
+    depends_on:
+      - db
+
+  # declare db service
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgres/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+    container_name: pg-db-container
+
+volumes:
+  ./data/db:
