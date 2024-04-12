@@ -41,6 +41,3 @@ services:
       - POSTGRES_PASSWORD=postgres
 
     container_name: pg-db-container
-
-volumes:
-  ./data/db:
